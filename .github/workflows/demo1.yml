@@ -2,8 +2,23 @@ name: Events Demo 1
 on:
   pull_request:
     types: [opened]
+    branches:
+      - main
+      - "dev-*" # dev-new dev-this-is-new
+      - "feature/*" # feature/new-feature feature/this-is-new
 
   workflow_dispatch:
+
+  push:
+    branches:
+      - main
+      - "dev-*" # dev-new dev-this-is-new
+      - "feature/*" # feature/new-feature feature/this-is-new
+    paths-ignore:
+      - "README.md"
+      - ".github/workflows/*" # Ignore all workflows (Workflow Trigger hi nai hoga)
+      - ".github/ISSUE_TEMPLATE/*" # Ignore all issue templates
+      - ".github/PULL_REQUEST_TEMPLATE/*" # Ignore all pull request templates
 jobs:
   deploy:
     runs-on: ubuntu-latest
